@@ -19,6 +19,68 @@
                             </a>
                         </li>
 
+                        <!-- Dashboard -->
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle text-body-secondary" id="dashboardDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <svg class="bi d-block mx-auto mb-1" width="20" height="20"><use xlink:href="#speedometer2"/></svg>
+                                <span th:text="#{header.dashboard}"></span>
+                            </a>
+                            <ul class="dropdown-menu shadow-sm border-0 rounded-2 mt-0"
+                                aria-labelledby="dashboardDropdown"
+                                style="background-color: transparent; backdrop-filter: blur(5px); -webkit-backdrop-filter: blur(5px);">
+                                <li>
+                                    <a class="dropdown-item py-2 px-3" href="/dashboard/overview" hx-get="/dashboard/overview" hx-target="#mainContent">
+                                        <svg class="bi me-2" width="16" height="16"><use xlink:href="#overview"/></svg>
+                                        <span th:text="#{header.dashboard.overview}"></span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item py-2 px-3" href="/dashboard/analytics" hx-get="/dashboard/analytics" hx-target="#mainContent">
+                                        <svg class="bi me-2" width="16" height="16"><use xlink:href="#analysis"/></svg>
+                                        <span th:text="#{header.dashboard.analytics}"></span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <!-- Chat -->
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle text-body-secondary" id="chatDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <svg class="bi d-block mx-auto mb-1" width="20" height="20"><use xlink:href="#wechat"/></svg>
+                                <span th:text="#{header.chat}"></span>
+                            </a>
+                            <ul class="dropdown-menu shadow-sm border-0 rounded-2 mt-0"
+                                aria-labelledby="chatDropdown"
+                                style="background-color: transparent; backdrop-filter: blur(5px); -webkit-backdrop-filter: blur(5px);">
+                                <li>
+                                    <a class="dropdown-item py-2 px-3" href="/chat/user" hx-get="/chat/user" hx-target="#mainContent">
+                                        <svg class="bi me-2" width="16" height="16"><use xlink:href="#chat-user"/></svg>
+                                        <span th:text="#{header.chat.user}"></span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item py-2 px-3" href="/chat/ai" hx-get="/chat/ai" hx-target="#mainContent">
+                                        <svg class="bi me-2" width="16" height="16"><use xlink:href="#ai"/></svg>
+                                        <span th:text="#{header.chat.ai}"></span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item py-2 px-3" href="/chat/settings" hx-get="/chat/settings" hx-target="#mainContent">
+                                        <svg class="bi me-2" width="16" height="16"><use xlink:href="#ai-settings"/></svg>
+                                        <span th:text="#{header.chat.settings}"></span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <!-- Settings -->
+                        <li>
+                            <a class="nav-link text-body-secondary" href="/app/settings" hx-get="/app/settings" hx-target="#mainContent">
+                                <svg class="bi d-block mx-auto mb-1" width="20" height="20"><use xlink:href="#sliders"/></svg>
+                                <span th:text="#{header.settings}"></span>
+                            </a>
+                        </li>
+
                         <li>
                             <a class="nav-link text-body-secondary" href="/example" hx-get="/example" hx-target="#mainContent">
                                 <svg class="bi d-block mx-auto mb-1" width="20" height="20"><use xlink:href="#sliders"/></svg>
