@@ -1,0 +1,35 @@
+<div th:fragment="header" class="mb-auto">
+    <header>
+        <div class="px-2 px-md-3">
+            <div class="container">
+                <div class="align-items-center justify-content-between border-bottom border-secondary rounded">
+
+                    <ul class="nav my-1 my-md-2 justify-content-center text-small">
+
+                        <!-- Home -->
+                        <li>
+                            <a class="nav-link text-body-secondary"
+                               href="/home"
+                               hx-get="/home"
+                               hx-target="#mainContent">
+                                <svg class="bi d-block mx-auto mb-1" width="20" height="20">
+                                    <use xlink:href="#home"/>
+                                </svg>
+                                <span th:text="#{header.home}"></span>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a class="nav-link text-body-secondary" href="/example" hx-get="/example" hx-target="#mainContent">
+                                <svg class="bi d-block mx-auto mb-1" width="20" height="20"><use xlink:href="#sliders"/></svg>
+                                <span th:text="#{header.example}"></span>
+                            </a>
+                        </li>
+
+                    </ul>
+
+                </div>
+            </div>
+        </div>
+    </header>
+</div>
