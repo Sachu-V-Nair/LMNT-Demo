@@ -1,0 +1,37 @@
+{
+  "name": "@titan3rd/demo-ui",
+  "private": false,
+  "version": "0.0.6",
+  "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Sachu-V-Nair/LMNT-Demo.git",
+    "directory": "ui"
+  },
+  "files": [
+    "dist"
+  ],
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
+  },
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc -b && vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@titan3rd/framework-ui": "0.0.9",
+    "@vitejs/plugin-react": "^6.0.1",
+    "typescript": "~6.0.2",
+    "vite": "^8.0.10",
+    "react": "^19.2.5",
+    "react-dom": "^19.2.5"
+  },
+  "devDependencies": {
+    "@tailwindcss/vite": "^4.3.0",
+    "@types/node": "^24.12.3",
+    "@types/react": "^19.2.14",
+    "@types/react-dom": "^19.2.3",
+    "tailwindcss": "^4.3.0"
+  }
+}
