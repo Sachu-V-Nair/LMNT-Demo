@@ -1,7 +1,7 @@
 {
   "name": "@titan3rd/demo-ui",
   "private": false,
-  "version": "0.0.6",
+  "version": "0.0.1",
   "type": "module",
   "repository": {
     "type": "git",
@@ -20,7 +20,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@titan3rd/framework-ui": "0.0.9",
+    "@titan3rd/framework-ui": "26.06.3",
     "@vitejs/plugin-react": "^6.0.1",
     "typescript": "~6.0.2",
     "vite": "^8.0.10",
