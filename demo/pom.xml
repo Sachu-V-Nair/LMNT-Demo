@@ -34,7 +34,7 @@
     <repositories>
         <repository>
             <id>github</id>
-            <url>https://maven.pkg.github.com/Sachu-V-Nair/LMNT-Demo</url>
+			<url>https://maven.pkg.github.com/Titan3rd/Framework_LMNT</url>
         </repository>
     </repositories>
 
