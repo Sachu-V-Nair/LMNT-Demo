@@ -151,6 +151,10 @@ jobs:
           </settings>
           EOF
 
+      - name: Make Maven wrapper executable
+        working-directory: demo
+        run: chmod +x mvnw
+
       - name: Build WAR
         working-directory: demo
         run: ./mvnw -B clean package
