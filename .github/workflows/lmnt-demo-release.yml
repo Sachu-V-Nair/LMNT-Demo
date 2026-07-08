@@ -1,0 +1,162 @@
+name: LMNT Demo Build & Release
+
+on:
+  push:
+    branches: ["main"]
+    paths:
+      - "demo/**"
+      - "ui/**"
+      - ".github/workflows/lmnt-demo-release.yml"
+
+  pull_request:
+    branches: ["main"]
+    paths:
+      - "demo/**"
+      - "ui/**"
+      - ".github/workflows/lmnt-demo-release.yml"
+
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  packages: write
+
+env:
+  JAVA_VERSION: "24"
+  NODE_VERSION: "22"
+
+jobs:
+  ui-package:
+    name: Build UI Package
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          registry-url: "https://npm.pkg.github.com"
+          scope: "@titan3rd"
+          cache: "npm"
+          cache-dependency-path: ui/package-lock.json
+
+      - name: Install UI dependencies
+        working-directory: ui
+        run: npm install
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GH_PACKAGES_TOKEN }}
+
+      - name: Build UI
+        working-directory: ui
+        run: npm run build
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GH_PACKAGES_TOKEN }}
+
+      - name: Create UI package tarball
+        working-directory: ui
+        run: |
+          mkdir -p ../artifacts
+          npm pack --pack-destination ../artifacts
+
+      - name: Upload UI package artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: demo-ui-package
+          path: artifacts/*.tgz
+
+      - name: Delete existing package version
+        if: github.event_name == 'push'
+        working-directory: ui
+        env:
+          GH_TOKEN: ${{ secrets.GH_PACKAGES_TOKEN }}
+        run: |
+          set -euo pipefail
+
+          PACKAGE_NAME="$(node -p "require('./package.json').name")"
+          PACKAGE_VERSION="$(node -p "require('./package.json').version")"
+          PACKAGE_BASENAME="$(node -p "require('./package.json').name.split('/').pop()")"
+          PACKAGE_OWNER="Titan3rd"
+          VERSION_ID=""
+          VERSIONS_ENDPOINT=""
+
+          echo "Checking for ${PACKAGE_NAME}@${PACKAGE_VERSION}"
+
+          for PACKAGE_LOOKUP_NAME in "${PACKAGE_BASENAME}" "${PACKAGE_NAME}"; do
+            ENCODED_PACKAGE_NAME="$(node -e "console.log(encodeURIComponent(process.argv[1]))" "${PACKAGE_LOOKUP_NAME}")"
+
+            for ENDPOINT in \
+              "/user/packages/npm/${ENCODED_PACKAGE_NAME}/versions" \
+              "/users/${PACKAGE_OWNER}/packages/npm/${ENCODED_PACKAGE_NAME}/versions" \
+              "/orgs/${PACKAGE_OWNER}/packages/npm/${ENCODED_PACKAGE_NAME}/versions"
+            do
+              echo "Looking up package versions at ${ENDPOINT}"
+
+              if ! VERSIONS_JSON="$(gh api "${ENDPOINT}" 2>/dev/null)"; then
+                continue
+              fi
+
+              VERSION_ID="$(echo "${VERSIONS_JSON}" | jq -r ".[] | select(.name == \"${PACKAGE_VERSION}\") | .id" | head -n 1)"
+
+              if [ -n "${VERSION_ID}" ]; then
+                VERSIONS_ENDPOINT="${ENDPOINT}"
+                break 2
+              fi
+            done
+          done
+
+          if [ -z "${VERSION_ID}" ]; then
+            echo "No existing ${PACKAGE_NAME}@${PACKAGE_VERSION} package version found."
+            exit 0
+          fi
+
+          echo "Deleting existing ${PACKAGE_NAME}@${PACKAGE_VERSION} package version ${VERSION_ID}"
+          gh api --method DELETE "${VERSIONS_ENDPOINT}/${VERSION_ID}"
+          sleep 10
+
+      - name: Publish UI package
+        if: github.event_name == 'push'
+        working-directory: ui
+        run: npm publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GH_PACKAGES_TOKEN }}
+
+  war-package:
+    name: Build WAR File
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up JDK 24
+        uses: actions/setup-java@v4
+        with:
+          java-version: ${{ env.JAVA_VERSION }}
+          distribution: "temurin"
+          cache: "maven"
+
+      - name: Create Maven settings.xml
+        run: |
+          mkdir -p ~/.m2
+          cat > ~/.m2/settings.xml << 'EOF'
+          <settings>
+            <servers>
+              <server>
+                <id>github</id>
+                <username>Titan3rd</username>
+                <password>${{ secrets.GH_PACKAGES_TOKEN }}</password>
+              </server>
+            </servers>
+          </settings>
+          EOF
+
+      - name: Build WAR
+        working-directory: demo
+        run: ./mvnw -B clean package
+
+      - name: Upload WAR artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: demo-war
+          path: demo/target/*.war
