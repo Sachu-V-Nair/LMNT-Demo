@@ -155,9 +155,10 @@ jobs:
         working-directory: demo
         run: chmod +x mvnw
 
-      - name: Build WAR
+      - name: Build and publish WAR package
+        if: github.event_name == 'push'
         working-directory: demo
-        run: mvn -B clean package
+        run: mvn -B clean deploy
 
       - name: Upload WAR artifact
         uses: actions/upload-artifact@v4
