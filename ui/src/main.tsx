@@ -8,6 +8,7 @@ import { demoRoutes } from "./routes"
 const App = createLmntApp({
     productRoutes: demoRoutes,
     defaultRoute: "/demo/sample",
+    productLogoPath: "/__missing-demo-logo.svg",
     productFrontendVersion: demoPackage.version,
 } as Parameters<typeof createLmntApp>[0] & { productFrontendVersion: string })
 
