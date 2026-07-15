@@ -20,6 +20,11 @@ export default defineConfig({
     port: 5174,
     strictPort: true,
     proxy: {
+      "/chat-websocket": {
+        target: "http://localhost:8080",
+        changeOrigin: true,
+        ws: true,
+      },
       "^/(?!src|node_modules|@vite|@react-refresh|@fs).*": {
         target: "http://localhost:8080",
         changeOrigin: true,
