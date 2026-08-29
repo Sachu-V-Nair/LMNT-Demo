@@ -16,23 +16,18 @@ export default defineConfig({
     dedupe: ["react", "react-dom", "react-router-dom"],
   },
   server: {
-    host: "127.0.0.1",
+    host: "0.0.0.0",
     port: 5174,
     strictPort: true,
     proxy: {
+      "/api": {
+        target: "http://localhost:8080",
+        changeOrigin: true,
+      },
       "/chat-websocket": {
         target: "http://localhost:8080",
         changeOrigin: true,
         ws: true,
-      },
-      "^/(?!src|node_modules|@vite|@react-refresh|@fs).*": {
-        target: "http://localhost:8080",
-        changeOrigin: true,
-        bypass: (req) => {
-          if (req.headers.accept?.includes("text/html")) {
-            return "/index.html"
-          }
-        },
       },
     },
   },
