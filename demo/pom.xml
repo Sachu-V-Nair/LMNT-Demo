@@ -46,8 +46,38 @@
 		</dependency>
         <dependency>
             <groupId>com.titan</groupId>
-            <artifactId>lmnt</artifactId>
-            <version>26.07.16-SNAPSHOT</version>
+            <artifactId>lmnt-core</artifactId>
+            <version>26.08.08</version>
+        </dependency>
+        <dependency>
+            <groupId>com.titan</groupId>
+            <artifactId>lmnt-operations</artifactId>
+            <version>26.08.08</version>
+        </dependency>
+        <dependency>
+            <groupId>com.titan</groupId>
+            <artifactId>lmnt-workflow</artifactId>
+            <version>26.08.08</version>
+        </dependency>
+        <dependency>
+            <groupId>com.titan</groupId>
+            <artifactId>lmnt-finance</artifactId>
+            <version>26.08.08</version>
+        </dependency>
+        <dependency>
+            <groupId>com.titan</groupId>
+            <artifactId>lmnt-communication</artifactId>
+            <version>26.08.08</version>
+        </dependency>
+        <dependency>
+            <groupId>com.titan</groupId>
+            <artifactId>lmnt-board</artifactId>
+            <version>26.08.08</version>
+        </dependency>
+        <dependency>
+            <groupId>com.titan</groupId>
+            <artifactId>lmnt-webhook</artifactId>
+            <version>26.08.08</version>
         </dependency>
 		<dependency>
 			<groupId>com.h2database</groupId>
