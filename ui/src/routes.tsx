@@ -1,4 +1,4 @@
-import type { LmntProductRoute } from "@titan3rd/lmnt-ui-core"
+import type { LmntProductRoute } from "@lmnt-platform/lmnt-ui-core"
 import { Navigate } from "react-router-dom"
 import { DemoHomePage } from "./pages/DemoHomePage"
 import { SamplePage } from "./pages/SamplePage"

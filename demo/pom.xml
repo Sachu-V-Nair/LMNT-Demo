@@ -34,7 +34,7 @@
     <repositories>
         <repository>
             <id>github</id>
-			<url>https://maven.pkg.github.com/Titan3rd/Framework_LMNT</url>
+			<url>https://maven.pkg.github.com/LMNT-Platform/LMNT-Release</url>
         </repository>
     </repositories>
 
@@ -45,39 +45,39 @@
 			<scope>test</scope>
 		</dependency>
         <dependency>
-            <groupId>com.titan</groupId>
+            <groupId>com.platform</groupId>
             <artifactId>lmnt-core</artifactId>
-            <version>26.09.02</version>
+            <version>26.09.04</version>
         </dependency>
         <dependency>
-            <groupId>com.titan</groupId>
+            <groupId>com.platform</groupId>
             <artifactId>lmnt-operations</artifactId>
-            <version>26.09.02</version>
+            <version>26.09.04</version>
         </dependency>
         <dependency>
-            <groupId>com.titan</groupId>
+            <groupId>com.platform</groupId>
             <artifactId>lmnt-workflow</artifactId>
-            <version>26.09.02</version>
+            <version>26.09.04</version>
         </dependency>
         <dependency>
-            <groupId>com.titan</groupId>
+            <groupId>com.platform</groupId>
             <artifactId>lmnt-finance</artifactId>
-            <version>26.09.02</version>
+            <version>26.09.04</version>
         </dependency>
         <dependency>
-            <groupId>com.titan</groupId>
+            <groupId>com.platform</groupId>
             <artifactId>lmnt-communication</artifactId>
-            <version>26.09.02</version>
+            <version>26.09.04</version>
         </dependency>
         <dependency>
-            <groupId>com.titan</groupId>
+            <groupId>com.platform</groupId>
             <artifactId>lmnt-board</artifactId>
-            <version>26.09.02</version>
+            <version>26.09.04</version>
         </dependency>
         <dependency>
-            <groupId>com.titan</groupId>
+            <groupId>com.platform</groupId>
             <artifactId>lmnt-webhook</artifactId>
-            <version>26.09.02</version>
+            <version>26.09.04</version>
         </dependency>
 		<dependency>
 			<groupId>com.h2database</groupId>
