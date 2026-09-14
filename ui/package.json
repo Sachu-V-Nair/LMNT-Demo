@@ -1,5 +1,5 @@
 {
-  "name": "@titan3rd/demo-ui",
+  "name": "@sachu-v-nair/demo-ui",
   "private": false,
   "version": "0.0.1",
   "type": "module",
@@ -20,7 +20,13 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@titan3rd/framework-ui": "26.06.3",
+    "@lmnt-platform/lmnt-ui-board": "26.09.04",
+    "@lmnt-platform/lmnt-ui-communication": "26.09.04",
+    "@lmnt-platform/lmnt-ui-core": "26.09.04",
+    "@lmnt-platform/lmnt-ui-finance": "26.09.04",
+    "@lmnt-platform/lmnt-ui-operations": "26.09.04",
+    "@lmnt-platform/lmnt-ui-webhook": "26.09.04",
+    "@lmnt-platform/lmnt-ui-workflow": "26.09.04",
     "@vitejs/plugin-react": "^6.0.1",
     "typescript": "~6.0.2",
     "vite": "^8.0.10",

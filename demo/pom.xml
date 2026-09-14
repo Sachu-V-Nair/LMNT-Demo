@@ -8,7 +8,7 @@
 		<version>3.4.4</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.example</groupId>
+	<groupId>com.lmnt</groupId>
 	<artifactId>demo</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>war</packaging>
@@ -34,7 +34,7 @@
     <repositories>
         <repository>
             <id>github</id>
-            <url>https://maven.pkg.github.com/Titan3rd/Framework_LMNT</url>
+			<url>https://maven.pkg.github.com/LMNT-Platform/LMNT-Release</url>
         </repository>
     </repositories>
 
@@ -45,9 +45,39 @@
 			<scope>test</scope>
 		</dependency>
         <dependency>
-            <groupId>com.titan</groupId>
-            <artifactId>lmnt</artifactId>
-            <version>26.06.3-SNAPSHOT</version>
+            <groupId>com.platform</groupId>
+            <artifactId>lmnt-core</artifactId>
+            <version>26.09.04</version>
+        </dependency>
+        <dependency>
+            <groupId>com.platform</groupId>
+            <artifactId>lmnt-operations</artifactId>
+            <version>26.09.04</version>
+        </dependency>
+        <dependency>
+            <groupId>com.platform</groupId>
+            <artifactId>lmnt-workflow</artifactId>
+            <version>26.09.04</version>
+        </dependency>
+        <dependency>
+            <groupId>com.platform</groupId>
+            <artifactId>lmnt-finance</artifactId>
+            <version>26.09.04</version>
+        </dependency>
+        <dependency>
+            <groupId>com.platform</groupId>
+            <artifactId>lmnt-communication</artifactId>
+            <version>26.09.04</version>
+        </dependency>
+        <dependency>
+            <groupId>com.platform</groupId>
+            <artifactId>lmnt-board</artifactId>
+            <version>26.09.04</version>
+        </dependency>
+        <dependency>
+            <groupId>com.platform</groupId>
+            <artifactId>lmnt-webhook</artifactId>
+            <version>26.09.04</version>
         </dependency>
 		<dependency>
 			<groupId>com.h2database</groupId>
@@ -76,5 +106,13 @@
 			</plugin>
 		</plugins>
 	</build>
+
+	<distributionManagement>
+		<repository>
+			<id>github</id>
+			<name>GitHub Packages</name>
+			<url>https://maven.pkg.github.com/Sachu-V-Nair/LMNT-Demo</url>
+		</repository>
+	</distributionManagement>
 
 </project>
